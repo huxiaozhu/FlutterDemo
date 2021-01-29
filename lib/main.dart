@@ -1,4 +1,9 @@
-import 'file:///D:/Flutter/demo/lib/page/MainPage.dart';
+import 'dart:collection';
+
+import 'package:demo/MyString.dart';
+import 'package:demo/page/MainPage.dart';
+import 'package:demo/page/guide/GuidePage.dart';
+import 'package:demo/page/preview/PreviewPage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +18,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:MainPage()
+      home:PreviewPage(),
+      routes: {
+        MyString.routesMain:(BuildContext context)=>MainPage(),
+        MyString.routesGuide:(BuildContext context)=>GuidePage()
+      },
     );
   }
 }

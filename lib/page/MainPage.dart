@@ -1,5 +1,6 @@
 import 'package:demo/MyString.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'CategoryPage.dart';
 import 'HomePage.dart';
@@ -24,8 +25,8 @@ class MyTabState extends State<MainPage> {
       ),
       body: this.listTabs[this.currentIndex],
       bottomNavigationBar: initButtom(),
-      // floatingActionButton: initActionButton(),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: initActionButton(context),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 
@@ -50,7 +51,16 @@ class MyTabState extends State<MainPage> {
     },
     items: [
       BottomNavigationBarItem(
-        icon: Icon(Icons.home),
+        icon: Image.asset(
+            "images/home.png",
+          width: 30,
+          height: 30,
+        ),
+        activeIcon: Image.asset(
+          "images/setting.png",
+          width: 30,
+          height: 30,
+        ),
         label: "首页"
       ),
       BottomNavigationBarItem(
@@ -65,9 +75,15 @@ class MyTabState extends State<MainPage> {
   );
 }
 
-initActionButton() =>FloatingActionButton(
+initActionButton(BuildContext context) =>FloatingActionButton(
+  shape: CircleBorder(),
+  elevation: 20,
   backgroundColor: Colors.yellow,
-  child: Text("赞"),
+  tooltip: "赞",
+  child: const Icon(Icons.add),
+  onPressed: (){
+    Fluttertoast.showToast(msg: "赞");
+  },
 );
 
 
