@@ -1,10 +1,9 @@
 import 'package:demo/MyString.dart';
+import 'package:demo/page/shop/Shopping.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
-import 'CategoryPage.dart';
-import 'HomePage.dart';
-import 'SettingsPage.dart';
+import 'category/CategoryPage.dart';
+import 'home/HomePage.dart';
+import 'center/SettingsPage.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key key}) : super(key: key);
@@ -19,30 +18,24 @@ class MyTabState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(MyString.appTitle),
-        centerTitle: true,
-      ),
       body: this.listTabs[this.currentIndex],
       bottomNavigationBar: initButtom(),
-      floatingActionButton: initActionButton(context),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 
   int currentIndex = 0;
   List listTabs = [
     HomePage(),
-    CategoryPage(),
-    SettingsPage(),
+    CustomizedPage(),
+    ShoppingPage(),
+    PersonalCenterPage(),
   ];
 
   initButtom() => BottomNavigationBar(
     currentIndex: this.currentIndex,
-    iconSize: 30.0,
-    selectedItemColor: Colors.red,
-    unselectedItemColor: Colors.amber,
-    backgroundColor: Colors.blue,
+    backgroundColor: Color(0xFF8C5F38),
+    selectedItemColor: Color(0xFF000000),
+    unselectedItemColor: Color(0xFFFFFFFF),
     type: BottomNavigationBarType.fixed,
     onTap:(index){
       setState(() {
@@ -52,39 +45,60 @@ class MyTabState extends State<MainPage> {
     items: [
       BottomNavigationBarItem(
         icon: Image.asset(
-            "images/home.png",
-          width: 30,
-          height: 30,
+            MyString.imgZhidemai,
+          width: 20,
+          height: 20,
         ),
         activeIcon: Image.asset(
-          "images/setting.png",
-          width: 30,
-          height: 30,
+          MyString.imgZhidemaiPress,
+          width: 20,
+          height: 20,
         ),
         label: "首页"
       ),
       BottomNavigationBarItem(
-          icon: Icon(Icons.category),
-          label: "分类",
+          icon: Image.asset(
+            MyString.imgDingzhi,
+            width: 20,
+            height: 20,
+          ),
+          activeIcon: Image.asset(
+            MyString.imgDingzhiPress,
+            width: 20,
+            height: 20,
+          ),
+          label: "订制"
       ),
       BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          label: "设置"
-      )
+          icon: Image.asset(
+            MyString.imgGouwuche,
+            width: 20,
+            height: 20,
+          ),
+          activeIcon: Image.asset(
+            MyString.imgGouwuchePress,
+            width: 20,
+            height: 20,
+          ),
+          label: "购物车"
+      ),
+      BottomNavigationBarItem(
+          icon: Image.asset(
+            MyString.imgWode,
+            width: 20,
+            height: 20,
+          ),
+          activeIcon: Image.asset(
+            MyString.imgWodePress,
+            width: 20,
+            height: 20,
+          ),
+          label: "我的"
+      ),
     ],
   );
 }
 
-initActionButton(BuildContext context) =>FloatingActionButton(
-  shape: CircleBorder(),
-  elevation: 20,
-  backgroundColor: Colors.yellow,
-  tooltip: "赞",
-  child: const Icon(Icons.add),
-  onPressed: (){
-    Fluttertoast.showToast(msg: "赞");
-  },
-);
 
 
 

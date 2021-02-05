@@ -1,6 +1,7 @@
 import 'package:demo/MyString.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class GuidePage extends StatefulWidget{
   @override
@@ -9,6 +10,14 @@ class GuidePage extends StatefulWidget{
 
 class GuideState extends State{
   var pic=["images/pic1.png","images/pic2.png","images/pic3.png"];
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  var isFrist;
+
+  @override
+  void initState() {
+    super.initState();
+    isFrist = _prefs.then((value) => value.getBool('frist')?? false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +52,16 @@ class GuideState extends State{
       itemCount: 3,
       // pagination: new SwiperPagination(),
       // control: new SwiperControl(color: Colors.transparent),
-      duration: 500,
+      duration: 200,
       autoplay: false,
       loop: false,
     );
 
+  }
+
+  setSharePreferences() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('frist', true);
   }
 
 }
