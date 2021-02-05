@@ -1,3 +1,4 @@
+import 'package:demo/page/MainPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -5,7 +6,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 class HomePage extends StatefulWidget{
   @override
   State<StatefulWidget> createState() => HomePageState();
-
 }
 
 class HomePageState extends State {
@@ -114,4 +114,5 @@ class HomePageState extends State {
       ),
     ),
   );
+
 }
